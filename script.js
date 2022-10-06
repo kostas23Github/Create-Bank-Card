@@ -3,10 +3,7 @@ const cardNumberInput = document.querySelector("input[name='card-number']");
 const cardHolderNameInput = document.querySelector('#name');
 const expDateYearInput = document.querySelector("input[name='exp-date-year']");
 const cvcInput = document.querySelector("input[name='cvc']");
-const expDateMonthInput = document.querySelector('select').value;
-const currentDate = new Date().getTime();
-const expDate = new Date(`${expDateYearInput.value}-${expDateMonthInput}`).getTime();
-
+const expDateMonthInput = document.querySelector('select');
 
 // Adds a hyphen every 4 numbers.
 //https://www.encodedna.com/javascript/how-to-add-dash-after-every-3rd-character-using-javascript-or-jquery.htm
@@ -45,11 +42,32 @@ cardNumberInput.addEventListener('input', () => {
     }
 })
 
-expDateYearInput.addEventListener('input', () => {
+const validateExpDate = () => {
+    const expDateYearInput = document.querySelector("input[name='exp-date-year']");
+    const expDateMonthInput = document.querySelector('select').value;
+    if (expDateMonthInput && expDateYearInput) {
+        const expDate = new Date(`${expDateYearInput.value}-${expDateMonthInput.valueOf()}`).getTime();
+        console.log(expDateMonthInput);
+        console.log(expDateMonthInput.valueOf());
+        const currentDate = new Date().getTime();
+        console.log(currentDate);
+        console.log(expDate - currentDate);
+        if (expDate - currentDate > 126227808000 || expDate - currentDate < 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+document.querySelector('.exp-date-container').addEventListener('change', () => {
     if (!validateExpDate() || expDateYearInput.validity.patternMismatch) {
+        expDateMonthInput.setCustomValidity('Exp. Date cannot exceed 4 years.');
+        expDateMonthInput.reportValidity();
         expDateYearInput.setCustomValidity('Exp. Date cannot exceed 4 years.');
         expDateYearInput.reportValidity();
     } else {
+        expDateMonthInput.setCustomValidity('');
         expDateYearInput.setCustomValidity('');
     }
 })
@@ -62,16 +80,6 @@ cvcInput.addEventListener('input', () => {
         cvcInput.setCustomValidity('');
     }
 })
-
-const validateExpDate = () => {
-    if (expDateMonthInput && expDateYearInput) {
-        if (expDate - currentDate > 126227808000 || expDate - currentDate < 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-}
 
 // Clears every form's input element's value.
 const clearForm = () => {
@@ -94,7 +102,7 @@ const resetCard = () => {
     cvc.textContent = '000';
 }
 
-//window.onload = clearForm();
+window.onload = clearForm();
 
 const submitForm = (event) => {
     event.preventDefault();
@@ -106,25 +114,27 @@ const submitForm = (event) => {
     let cvc = document.querySelector('.cvc-back');
 
     // Change layout elements
-    const formContainer = document.querySelector('.formContainer');
+    const formContainer = document.querySelector('.form-container');
     const formCompleted = document.querySelector('.form-completed');
 
     if (validateExpDate()) {
         // Each card value gets the user input value
-        expDate.textContent = `${expDateMonthInput.valueOf()}/${expDateYearInput.value.toString().slice(-2)}`;
-        cardHolderName.textContent = cardHolderNameInput.value.toUpperCase();
+        expDate.textContent = `${expDateMonthInput.value}/${expDateYearInput.value.toString().slice(-2)}`;
+        cardHolderName.textContent = cardHolderNameInput.value;
         cardNumber.textContent = cardNumberInput.value;
         cvc.textContent = cvcInput.value;
         clearForm();
         // Switch displays
-        //formContainer.style.display = 'hidden';
-        //formCompleted.style.display = 'flexbox';
+        formContainer.style.display = 'none';
+        formCompleted.style.display = 'block';
     } else {
         resetCard();
     }
 }
 
 document.querySelector('form').addEventListener('submit', submitForm);
+
+// STYLING JS
 
 const darken = () => {
     document.querySelector('.overlay').className = "overlay-dark";
@@ -140,7 +150,17 @@ const darken = () => {
     document.querySelector(".card-back").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
     document.querySelector("div.toggle-dark-white").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
     document.querySelector("div.toggle-animations").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
-    
+    let sun = document.querySelector('img.sun');
+    let moon = document.querySelector('img.moon');
+    moon.style.transform = "translateX(15px)";
+    sun.style.transform = "translateX(13px)";
+    moon.style.opacity = "0";
+    sun.style.opacity = "1";
+    moon.style.transition = "0.5s";
+    sun.style.transition = "0.5s";
+    sun.style.transitionDelay = "0.2s";
+
+
 }
 
 const lighten = () => {
@@ -158,6 +178,15 @@ const lighten = () => {
     document.querySelector(".card-back").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
     document.querySelector("div.toggle-dark-white").style.borderColor = "rgb(115, 0, 115)";
     document.querySelector("div.toggle-animations").style.borderColor = "rgb(115, 0, 115)";
+    let sun = document.querySelector('img.sun');
+    let moon = document.querySelector('img.moon');
+    moon.style.transform = "translateX(0px)"; //
+    sun.style.transform = "translateX(0px)";
+    moon.style.opacity = "1";
+    sun.style.opacity = "0";
+    moon.style.transition = "0.5s";
+    sun.style.transition = "0.5s";
+    moon.style.transitionDelay = "0.2s";
 }
 
 document.querySelector('.moon').addEventListener('click', darken);
@@ -166,16 +195,28 @@ document.querySelector('.sun').addEventListener('click', lighten);
 const enableAnimations = () => {
     document.querySelector('.overlay-dark').className = "rotate";
     let circlePurple = document.querySelector('.circle-purple');
-    let circleCyan = document.querySelector('.circle-purple');
+    let circleCyan = document.querySelector('.circle-cyan');
     circlePurple.style.transform = "translateX(15px)";
+    circleCyan.style.transform = "translateX(15px)";
     circlePurple.style.opacity = "0";
-    circlePurple.style.transition = "2s";
+    circleCyan.style.opacity = "1";
+    circlePurple.style.transition = "0.5s";
+    circleCyan.style.transition = "0.5s";
+    circleCyan.style.transitionDelay = "0.2s";
+
 }
 
 const disableAnimations = () => {
         document.querySelector('.rotate').className = "overlay-dark";
-        let circle = document.querySelector('.circle-cyan');
-
+        let circlePurple = document.querySelector('.circle-purple');
+        let circleCyan = document.querySelector('.circle-cyan');
+        circlePurple.style.transform = "translateX(0px)";
+        circleCyan.style.transform = "translateX(0px)";
+        circlePurple.style.opacity = "1";
+        circleCyan.style.opacity = "0";
+        circlePurple.style.transition = "0.5s";
+        circleCyan.style.transition = "0.5s";
+        circlePurple.style.transitionDelay = "0.2s";
     }
 
 

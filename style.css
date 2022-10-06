@@ -75,21 +75,21 @@ div.toggle-dark-white {
 }
 
 img.moon {
-    margin-left: 2px;
+    margin-left: 5px;
 }
 
 img.sun {
-    /* display: inline; */
-    float: right;
-    margin-top: 3px;
-    margin-right: 3px;
+    opacity: 0;
+    float: center;
+    margin-top: 4px;
+    margin-right: 5px;
 }
 
 div.toggle-animations {
     border: 3px solid rgb(115, 0, 115);
     border-radius: 20px;
     margin-top: 3px;
-    /* padding: 6px; */
+    padding: 1px 0px;
 }
 
 img.circle-purple {
@@ -97,10 +97,11 @@ img.circle-purple {
 }
 
 img.circle-cyan {
-    float: right;
+    float: center;
+    opacity: 0;
     margin-top: 7px;
-    margin-right: 4px;
-} 
+    /* margin-right: 4px; <-comment it */
+}  
 
 main {
     display: flex;
@@ -254,9 +255,13 @@ form #exp-date-month:focus {
     outline: none;
     border: 2px inset hsl(278, 68%, 11%);
 }
-
+/* 
 form input:focus:invalid,
 form #exp-date-month:focus:invalid {
+    border: 3px inset rgb(255, 0, 89);
+} */
+form input:invalid,
+form #exp-date-month:invalid {
     border: 3px inset rgb(255, 0, 89);
 }
 
