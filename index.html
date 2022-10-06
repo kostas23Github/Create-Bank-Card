@@ -12,57 +12,80 @@
 </head>
 
 <body>
+  <div class="overlay"></div>
+  <div class="toggle-container">
+    <div class="toggle-dark-white">
+      <img class="moon" src="./images/icons8-crescent-moon-15.png" alt="moon">
+      <img class="sun" src="./images/icons8-sun-20.png" alt="sun">
+    </div>
+    <div class="toggle-animations">
+      <img class="circle" src="./images/icons8-360-degrees-15.png" alt="circle">
+    </div>
+  </div>
   <main>
     <section class="card-container">
       <div class="card-front">
-        <div class="circle"></div>
+        <div class="circle">
+          <div class="circle-full"></div>
+          <div class="circle-empty"></div>
+        </div>
         <div class="card-front-details">
-          <p class="card-number">0000 0000 0000 0000</p>
-          <p class="cardholder-name">Jane Appleseed</p>
-          <p class="exp-date">00/00</p>
+          <p class="card-front-number">0000 0000 0000 0000</p>
+          <p class="cardholder-front-name">Jane Appleseed</p>
+          <p class="exp-date-front">00/00</p>
         </div>
       </div>
       <div class="card-back">
-        <p class="cvc">000</p>
+        <p class="cvc-back">000</p>
       </div>
     </section>
     <section class="form-container">
-      <form autocomplete="off"> <!-- Disables the history inputs-->
-        <label for="name">CARDHOLDER NAME</label>
-        <br>
-        <input type="text" name="name" id="name" placeholder="John Smith" pattern="([A-Z][a-z]{3,16}\s([A-Z]\.\s)?[A-Z][a-z]{3,16}(-[A-Z][a-z]{3,16})?)|([A-Z]{2,16}\s([A-Z]\.\s)?[A-Z]{2,16}(-[A-Z]{2,16}))" required autofocus>
-        <br>
+      <form autocomplete="off">
+        <!-- Disables the history inputs-->
+        <label for="card-holder-name">CARDHOLDER NAME</label>
+        <input type="text" name="card-holder-name" id="name" placeholder="John Smith"
+          pattern="([A-Z][a-z]{2,16}\s([A-Z]\.\s)?[A-Z][a-z]{2,16}(-[A-Z][a-z]{2,16})?)|([A-Z]{3,16}\s([A-Z]\.\s)?[A-Z]{3,16}(-[A-Z]{3,16})?)"
+          required autofocus>
         <label for="card-number">CARD NUMBER</label>
-        <br>
-        <input type="text" name="card-number" id="card-number" placeholder="1234-5687-9123-4567" maxlength="19" pattern="(\d{4}-){3}\d{4}" required>
-        <br>
-        <div class="exp-date">
-          <label for="exp-date">EXP. DATE (MM/YY)</label>
-          <br>
-          <select name="exp-date-month" id="exp-date-month" required>
-            <option value="1" selected>01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="6">06</option>
-            <option value="7">07</option>
-            <option value="8">08</option>
-            <option value="9">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <input type="text" name="exp-date-year" id="exp-date-year" placeholder="YY" pattern="\d{4}" required>
+        <input type="text" name="card-number" id="card-number" placeholder="1234-5687-9123-4567" maxlength="19"
+          pattern="(\d{4}-){3}\d{4}" required>
+        <div class="third-row">
+          <div class="exp-date-container">
+            <label for="exp-date">EXP. DATE (MM/YY)</label>
+            <br>
+            <div class="exp-date-input-container">
+              <select name="exp-date-month" id="exp-date-month" required>
+                <option value="01" selected>01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <input type="text" name="exp-date-year" id="exp-date-year" placeholder="YYYY" pattern="\d{4}" required>
+            </div>
+          </div>
+          <div class="cvc-container">
+            <label for="cvc">CVC</label>
+            <br>
+            <input type="text" name="cvc" id="cvc" placeholder="123" pattern="\d{3}" maxlength="3" required>
+          </div>
         </div>
-        <div class="cvc">
-          <label for="cvc">CVC</label>
-          <br>
-          <input type="text" name="cvc" id="cvc" placeholder="123" pattern="\d{3}" maxlength="3" required>
-        </div>
         <br>
-        <input type="submit" value="Confirm">
+        <input type="submit" value="Confirm" class="btn">
       </form>
+    </section>
+    <section class="form-completed">
+      <img src="./images/icon-complete.svg" alt="Icon Complete">
+      <h3>THANK YOU</h3>
+      <p class="sucess">We've added your card details</p>
+      <p class="btn">Continue</p>
     </section>
   </main>
 </body>
