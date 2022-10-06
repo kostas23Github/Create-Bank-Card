@@ -127,24 +127,58 @@ const submitForm = (event) => {
 document.querySelector('form').addEventListener('submit', submitForm);
 
 const darken = () => {
-    document.querySelector('.overlay').style.opacity = '0.4';
-    document.querySelector('body').style.backgroundColor = "rgb(0, 0, 0, 0.9)";
+    document.querySelector('.overlay').className = "overlay-dark";
     document.querySelector('body').style.color = 'white';
+    document.querySelector('body').style.backgroundColor = 'black';
     document.querySelectorAll('.btn').forEach(button=> {
         button.style.color = 'black';
         button.style.backgroundColor = "hsl(187, 63%, 47%, 0.9)";
         });
+    document.querySelector(".icon-complete-dark").style.display = "block";
+    document.querySelector(".icon-complete").style.display = "none";
+    document.querySelector(".card-front").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
+    document.querySelector(".card-back").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
+    document.querySelector("div.toggle-dark-white").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
+    document.querySelector("div.toggle-animations").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
+    
 }
 
 const lighten = () => {
-    document.querySelector('.overlay').style.opacity = '1';
+    document.querySelector('.overlay-dark').className = "overlay";
     document.querySelector('body').style.backgroundColor = "rgb(222, 222, 222, 0.9)";
+    document.querySelector('body').style.backgroundImage = "none";
     document.querySelector('body').style.color = 'black';
     document.querySelectorAll('.btn').forEach(button=> {
         button.style.color = 'white';
         button.style.backgroundColor = "hsl(278, 68%, 11%)";
         });
+    document.querySelector(".icon-complete-dark").style.display = "none";
+    document.querySelector(".icon-complete").style.display = "block";
+    document.querySelector(".card-front").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
+    document.querySelector(".card-back").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
+    document.querySelector("div.toggle-dark-white").style.borderColor = "rgb(115, 0, 115)";
+    document.querySelector("div.toggle-animations").style.borderColor = "rgb(115, 0, 115)";
 }
 
 document.querySelector('.moon').addEventListener('click', darken);
 document.querySelector('.sun').addEventListener('click', lighten);
+
+const enableAnimations = () => {
+    document.querySelector('.overlay-dark').className = "rotate";
+    let circlePurple = document.querySelector('.circle-purple');
+    let circleCyan = document.querySelector('.circle-purple');
+    circlePurple.style.transform = "translateX(15px)";
+    circlePurple.style.opacity = "0";
+    circlePurple.style.transition = "2s";
+}
+
+const disableAnimations = () => {
+        document.querySelector('.rotate').className = "overlay-dark";
+        let circle = document.querySelector('.circle-cyan');
+
+    }
+
+
+
+document.querySelector('.circle-purple').addEventListener('click', enableAnimations);
+document.querySelector('.circle-cyan').addEventListener('click', disableAnimations);

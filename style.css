@@ -9,7 +9,7 @@ body {
     padding: 0;
     font-size: 18px;
     font-family: 'Space Grotesk', sans-serif;
-    /* overflow: hidden; */
+    overflow: hidden;
     height: 100%;
     background-color: rgb(222, 222, 222);
 }
@@ -36,7 +36,29 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     /* display: none; */
+} 
+
+.overlay-dark {
+    background-image: url(./images/bg-planets-black.jpg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
 }
+
+.rotate {
+    background-image: url(./images/bg-planets-black.jpg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+} 
 
 /* TOGGLY STUFF */
 
@@ -48,7 +70,7 @@ body {
 }
 
 div.toggle-dark-white {
-    border: 3px solid black;
+    border: 3px solid rgb(115, 0, 115);
     border-radius: 20px;
 }
 
@@ -64,11 +86,21 @@ img.sun {
 }
 
 div.toggle-animations {
-    border: 3px solid purple;
+    border: 3px solid rgb(115, 0, 115);
     border-radius: 20px;
     margin-top: 3px;
-    padding: 6px;
+    /* padding: 6px; */
 }
+
+img.circle-purple {
+    margin-left: 4px;
+}
+
+img.circle-cyan {
+    float: right;
+    margin-top: 7px;
+    margin-right: 4px;
+} 
 
 main {
     display: flex;
@@ -161,6 +193,7 @@ main {
 .form-container {
     width: 25%;
     margin-top: 50px;
+    z-index: 1;
     /* position: relative; */
     /* left: -70px; */
     /* top: 40px; */
@@ -205,7 +238,7 @@ form div.cvc-container {
 .btn {
     background-color: hsl(278, 68%, 11%);
     border: none;
-    border-radius: 10px;
+    border-radius: 30px;
     color: white;
     letter-spacing: 1px;
     opacity: 1;
@@ -227,16 +260,16 @@ form #exp-date-month:focus:invalid {
     border: 3px inset rgb(255, 0, 89);
 }
 
-.form-container {
+/* .form-container {
     display: none;
-}
+} */
 
 /* FORM COMPLETED */
 
 
-/* .form-completed {
+.form-completed {
     display: none;
-} */
+}
 
 .form-completed {
     width: 25%;
@@ -246,7 +279,11 @@ form #exp-date-month:focus:invalid {
 }
 
 .form-completed>* {
-    margin-bottom: 20px;
+    margin: 20px auto;
+}
+
+.form-completed>img.icon-complete-dark {
+    display: none;
 }
 
 .form-completed>h3 {
@@ -257,19 +294,50 @@ form #exp-date-month:focus:invalid {
     font-size: 0.8rem;
 }
 
+/* ANIMATIONS */
+
+@keyframes rotation {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+.rotate {
+    animation: 5s rotation infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes purpleRight {
+
+    100% {
+        transform: translateX(18px);
+        opacity: 0;
+    }
+}
+
+@keyframes cyanLeft {
+
+}
+
+/* .circle-purple:active {
+    animation: 1s purpleRight linear;
+    animation-fill-mode: forwards;
+} */
+
 /* MOBILE DESIGN */
 
 @media only screen and (max-width: 600px) and (min-height: 700px) {
 
     html,
     body {
-        width: 100%;
+        width: 100vw;
         overflow: hidden;
         flex-direction: column;
-    }
-
-    main {
-
+        height: 100vh;
     }
 
     .overlay {
@@ -277,6 +345,10 @@ form #exp-date-month:focus:invalid {
         width: 110%;
         height: 45%;
     }
+
+    /* .rotate {
+        animation: none;
+    } */
 
     .card-container {
         width: 80%;
@@ -355,6 +427,10 @@ form #exp-date-month:focus:invalid {
 
 @media (min-width: 700px) and (max-height: 500px) {
     
+    html {
+        overflow: hidden;
+    }
+
     .card-front {
         position: absolute;
         max-width: 300px;
@@ -379,7 +455,7 @@ form #exp-date-month:focus:invalid {
     }
 
     .cardholder-front-name,.exp-date-front {
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .cvc-back {
@@ -416,7 +492,12 @@ form #exp-date-month:focus:invalid {
 
 }
 
+/* TABLET DESIGN */
+
 @media (max-width: 1100px) { 
+    html {
+        overflow: hidden;
+    }
 
     .card-front {
         width: 320px;
