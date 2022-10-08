@@ -1,3 +1,5 @@
+/* UNIVERSAL STUFF */
+
 @font-face {
     font-family: 'Space Grotesk';
     src: url(./fonts/SpaceGrotesk-VariableFont_wght.ttf);
@@ -25,6 +27,8 @@ body {
     box-sizing: border-box;
 }
 
+/* OVERLAY STUFF */
+
 .overlay {
     position: fixed;
     left: -10px;
@@ -35,7 +39,6 @@ body {
     z-index: 1;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    /* display: none; */
 } 
 
 .overlay-dark {
@@ -90,6 +93,7 @@ div.toggle-animations {
     border-radius: 20px;
     margin-top: 3px;
     padding: 1px 0px;
+    display: none;
 }
 
 img.circle-purple {
@@ -255,15 +259,16 @@ form #exp-date-month:focus {
     outline: none;
     border: 2px inset hsl(278, 68%, 11%);
 }
-/* 
-form input:focus:invalid,
+
+/* Better since only the focus element is shown red, but not so good on the exp-date error.*/
+form input:focus:invalid,   
 form #exp-date-month:focus:invalid {
     border: 3px inset rgb(255, 0, 89);
-} */
-form input:invalid,
+}
+/* form input:invalid,
 form #exp-date-month:invalid {
     border: 3px inset rgb(255, 0, 89);
-}
+} */
 
 /* .form-container {
     display: none;
