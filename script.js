@@ -21,12 +21,12 @@ cardHolderNameInput.addEventListener('input', () => {
         // Multiline string with backticks
         cardHolderNameInput.setCustomValidity
             (`Acceptable formats: 
-        John Smith, 
-        JOHN SMITH, 
-        John J. Smith,
-        JOHN J. SMITH, 
-        John Smith-Smith,
-        JOHN SMITH-SMITH`);
+        Example Example, 
+        EXAMPLE EXAMPLE, 
+        Example E. Example,
+        Example E. EXAMPLE, 
+        Example Example-Example,
+        EXAMPLE EXAMPLE-EXAMPLE`);
         cardHolderNameInput.reportValidity();
     } else {
         cardHolderNameInput.setCustomValidity("");
@@ -35,7 +35,7 @@ cardHolderNameInput.addEventListener('input', () => {
 
 cardNumberInput.addEventListener('input', () => {
     if (cardNumberInput.validity.patternMismatch) {
-        cardNumberInput.setCustomValidity('Numbers only');
+        cardNumberInput.setCustomValidity('16-digit number');
         cardNumberInput.reportValidity();
     } else {
         cardNumberInput.setCustomValidity('');
@@ -62,9 +62,9 @@ const validateExpDate = () => {
 
 document.querySelector('.exp-date-container').addEventListener('change', () => {
     if (!validateExpDate() || expDateYearInput.validity.patternMismatch) {
-        expDateMonthInput.setCustomValidity('Exp. Date cannot exceed 4 years.');
+        expDateMonthInput.setCustomValidity('Exp. Date must be up to 4 years from today.');
         expDateMonthInput.reportValidity();
-        expDateYearInput.setCustomValidity('Exp. Date cannot exceed 4 years.');
+        expDateYearInput.setCustomValidity('Exp. Date must be up to 4 years from today.');
         expDateYearInput.reportValidity();
     } else {
         expDateMonthInput.setCustomValidity('');
@@ -89,7 +89,7 @@ const clearForm = () => {
 
     return butSubmitBtn.forEach(input => input.value = "");
 }
-
+// Resets the values displayed in the card elements
 const resetCard = () => {
     let cardNumber = document.querySelector('.card-front-number');
     let cardHolderName = document.querySelector('.cardholder-front-name');
@@ -97,13 +97,14 @@ const resetCard = () => {
     let cvc = document.querySelector('.cvc-back');
 
     cardNumber.textContent = '0000 0000 0000 0000';
-    cardHolderName.textContent = 'Jane Applessed';
+    cardHolderName.textContent = 'Example Example';
     expDate.textContent = '00/00';
     cvc.textContent = '000';
 }
 
 window.onload = clearForm();
 
+// Executes when the form is submitted
 const submitForm = (event) => {
     event.preventDefault();
 
@@ -123,6 +124,7 @@ const submitForm = (event) => {
         cardHolderName.textContent = cardHolderNameInput.value;
         cardNumber.textContent = cardNumberInput.value;
         cvc.textContent = cvcInput.value;
+        cardAnimation();
         clearForm();
         // Switch displays
         formContainer.style.display = 'none';
@@ -135,21 +137,22 @@ const submitForm = (event) => {
 document.querySelector('form').addEventListener('submit', submitForm);
 
 // STYLING JS
+// From here till the end the code handles the styling
 
 const darken = () => {
     document.querySelector('.overlay').className = "overlay-dark";
     document.querySelector('body').style.color = 'white';
     document.querySelector('body').style.backgroundColor = 'black';
-    document.querySelectorAll('.btn').forEach(button=> {
+    document.querySelectorAll('.btn').forEach(button => {
         button.style.color = 'black';
         button.style.backgroundColor = "hsl(187, 63%, 47%, 0.9)";
-        });
+    });
     document.querySelector(".icon-complete-dark").style.display = "block";
     document.querySelector(".icon-complete").style.display = "none";
     document.querySelector(".card-front").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
     document.querySelector(".card-back").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
     document.querySelector("div.toggle-dark-white").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
-    document.querySelector("div.toggle-animations").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
+    document.querySelector(".toggle-animations").style.display = "block";
     let sun = document.querySelector('img.sun');
     let moon = document.querySelector('img.moon');
     moon.style.transform = "translateX(15px)";
@@ -160,7 +163,6 @@ const darken = () => {
     sun.style.transition = "0.5s";
     sun.style.transitionDelay = "0.2s";
 
-
 }
 
 const lighten = () => {
@@ -168,16 +170,16 @@ const lighten = () => {
     document.querySelector('body').style.backgroundColor = "rgb(222, 222, 222, 0.9)";
     document.querySelector('body').style.backgroundImage = "none";
     document.querySelector('body').style.color = 'black';
-    document.querySelectorAll('.btn').forEach(button=> {
+    document.querySelectorAll('.btn').forEach(button => {
         button.style.color = 'white';
         button.style.backgroundColor = "hsl(278, 68%, 11%)";
-        });
+    });
     document.querySelector(".icon-complete-dark").style.display = "none";
     document.querySelector(".icon-complete").style.display = "block";
     document.querySelector(".card-front").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
     document.querySelector(".card-back").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
     document.querySelector("div.toggle-dark-white").style.borderColor = "rgb(115, 0, 115)";
-    document.querySelector("div.toggle-animations").style.borderColor = "rgb(115, 0, 115)";
+    document.querySelector("div.toggle-animations").style.display = "none";
     let sun = document.querySelector('img.sun');
     let moon = document.querySelector('img.moon');
     moon.style.transform = "translateX(0px)"; //
@@ -187,10 +189,13 @@ const lighten = () => {
     moon.style.transition = "0.5s";
     sun.style.transition = "0.5s";
     moon.style.transitionDelay = "0.2s";
+
 }
 
 document.querySelector('.moon').addEventListener('click', darken);
 document.querySelector('.sun').addEventListener('click', lighten);
+
+let animationStatus = false;
 
 const enableAnimations = () => {
     document.querySelector('.overlay-dark').className = "rotate";
@@ -204,22 +209,52 @@ const enableAnimations = () => {
     circleCyan.style.transition = "0.5s";
     circleCyan.style.transitionDelay = "0.2s";
 
+    document.querySelector('.toggle-dark-white').style.opacity = "0.5";
+    animationStatus = true;
 }
 
 const disableAnimations = () => {
-        document.querySelector('.rotate').className = "overlay-dark";
-        let circlePurple = document.querySelector('.circle-purple');
-        let circleCyan = document.querySelector('.circle-cyan');
-        circlePurple.style.transform = "translateX(0px)";
-        circleCyan.style.transform = "translateX(0px)";
-        circlePurple.style.opacity = "1";
-        circleCyan.style.opacity = "0";
-        circlePurple.style.transition = "0.5s";
-        circleCyan.style.transition = "0.5s";
-        circlePurple.style.transitionDelay = "0.2s";
-    }
+    document.querySelector('.rotate').className = "overlay-dark";
+    let circlePurple = document.querySelector('.circle-purple');
+    let circleCyan = document.querySelector('.circle-cyan');
+    circlePurple.style.transform = "translateX(0px)";
+    circleCyan.style.transform = "translateX(0px)";
+    circlePurple.style.opacity = "1";
+    circleCyan.style.opacity = "0";
+    circlePurple.style.transition = "0.5s";
+    circleCyan.style.transition = "0.5s";
+    circlePurple.style.transitionDelay = "0.2s";
+    document.querySelector('.toggle-dark-white').style.opacity = "1";
 
-
+    animationStatus = false;
+}
 
 document.querySelector('.circle-purple').addEventListener('click', enableAnimations);
 document.querySelector('.circle-cyan').addEventListener('click', disableAnimations);
+
+
+
+const cardAnimation = () => {
+
+    if (animationStatus) {
+        const cardFront = document.querySelector('.card-front');
+        const cardBack = document.querySelector('.card-back');
+
+        cardFront.style.transform = "translateX(-1000px)";
+        cardFront.style.transition = "2s";
+        cardBack.style.transform = "translateX(-1000px)";
+        cardBack.style.transition = "1s";
+        cardBack.style.transitionDelay = "0.5s";
+
+        setTimeout(() => {
+            cardFront.style.transform = "translateX(0px)";
+            cardFront.style.transition = "2s";
+            cardBack.style.transform = "translateX(0px)";
+            cardBack.style.transition = "3s";
+        }, 2000)
+
+    } else {
+        return;
+    }
+
+}
