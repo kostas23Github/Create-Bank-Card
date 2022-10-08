@@ -152,7 +152,7 @@ const darken = () => {
     document.querySelector(".card-front").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
     document.querySelector(".card-back").style.boxShadow = "5px 1px 30px 5px rgb(64, 190, 225, 0.5), 2px 2px 5px rgb(255, 255, 255, 0.5)";
     document.querySelector("div.toggle-dark-white").style.borderColor = "hsl(187, 63%, 47%, 0.9)";
-    document.querySelector(".toggle-animations").style.display = "block";
+    document.querySelector(".toggle-animations").style.visibility = "visible";
     let sun = document.querySelector('img.sun');
     let moon = document.querySelector('img.moon');
     moon.style.transform = "translateX(15px)";
@@ -179,7 +179,7 @@ const lighten = () => {
     document.querySelector(".card-front").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
     document.querySelector(".card-back").style.boxShadow = "5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6)";
     document.querySelector("div.toggle-dark-white").style.borderColor = "rgb(115, 0, 115)";
-    document.querySelector("div.toggle-animations").style.display = "none";
+    document.querySelector("div.toggle-animations").style.visibility = "hidden";
     let sun = document.querySelector('img.sun');
     let moon = document.querySelector('img.moon');
     moon.style.transform = "translateX(0px)"; //
