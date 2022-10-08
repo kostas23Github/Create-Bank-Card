@@ -15,12 +15,12 @@
   <div class="overlay"></div>
   <div class="toggle-container">
     <div class="toggle-dark-white">
-      <img class="moon" src="./images/icons8-crescent-moon-15.png" alt="moon">
-      <img class="sun" src="./images/icons8-sun-20.png" alt="sun">
+      <img class="moon" title="Dark mode" src="./images/icons8-crescent-moon-15.png" alt="moon">
+      <img class="sun" title="Normal mode" src="./images/icons8-sun-20.png" alt="sun">
     </div>
     <div class="toggle-animations">
-      <img class="circle-purple" src="./images/icons8-360-degrees-15-purple.png" alt="circle">
-      <img class="circle-cyan" src="./images/icons8-360-degrees-15-cyan.png" alt="circle">
+      <img class="circle-purple" title="Show animations" src="./images/icons8-360-degrees-15-purple.png" alt="circle">
+      <img class="circle-cyan" title="Hide animations" src="./images/icons8-360-degrees-15-cyan.png" alt="circle">
     </div>
   </div>
   <main>
@@ -32,7 +32,7 @@
         </div>
         <div class="card-front-details">
           <p class="card-front-number">0000 0000 0000 0000</p>
-          <p class="cardholder-front-name">Jane Appleseed</p>
+          <p class="cardholder-front-name">Example Example</p>
           <p class="exp-date-front">00/00</p>
         </div>
       </div>
@@ -41,10 +41,9 @@
       </div>
     </section>
     <section class="form-container">
-      <form autocomplete="off">
-        <!-- Disables the history inputs-->
+      <form autocomplete="off"> <!-- Disables the history inputs-->
         <label for="card-holder-name">CARDHOLDER NAME</label>
-        <input type="text" name="card-holder-name" id="name" placeholder="John Smith"
+        <input type="text" name="card-holder-name" id="name" placeholder="Example Example"
           pattern="([A-Z][a-z]{2,16}\s([A-Z]\.\s)?[A-Z][a-z]{2,16}(-[A-Z][a-z]{2,16})?)|([A-Z]{3,16}\s([A-Z]\.\s)?[A-Z]{3,16}(-[A-Z]{3,16})?)"
           required autofocus>
         <label for="card-number">CARD NUMBER</label>
