@@ -16,7 +16,7 @@
 
 ## Overview
 
-A landing page where a user can enter his/hers card details and see then displayed on the side. The user is also shown a completed display when the form is succesfully completed, plus a dark mode and some animations. Finally this landing page is suitable for all devices.
+A landing page where the user can enter card details and see them displayed on the side. The user is also shown a completed display when the form is succesfully completed, plus a dark mode and some animations. Finally this landing page is suitable for all devices.
 
 ### The challenge
 
@@ -51,7 +51,7 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
+- CSS3
 - Flexbox
 - Desktop-first workflow
 - Javascript
@@ -59,7 +59,7 @@ Users should be able to:
 
 ### What I learned
 
-Elements can have ```:valid``` ```:invalid``` pseudoselectors as well as the pseudoselectors themselves.
+Elements can have ```:valid```, ```:invalid``` pseudoselectors as well as the pseudoselectors themselves.
 
 ```css
 .proud-of-this-css:focus:invalid {
