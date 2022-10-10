@@ -1,3 +1,17 @@
+/* CONTENTS
+    UNIVERSAL STUFF
+    OVERLAY STUFF
+    TOGGLY STUFF
+    CARD DISPLAY
+    FORM
+    FORM COMPLETED DISPLAY
+    ANIMATIONS
+    MOBILE DESIGN portrait
+    MOBILE DESIGN landscape
+    TABLET DESIGN
+*/
+
+
 /* UNIVERSAL STUFF */
 
 @font-face {
@@ -26,6 +40,7 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
 
 /* OVERLAY STUFF */
 
@@ -63,6 +78,7 @@ body {
     z-index: 0;
 } 
 
+
 /* TOGGLY STUFF */
 
 .toggle-container {
@@ -75,37 +91,30 @@ body {
 div.toggle-dark-white {
     border: 3px solid rgb(115, 0, 115);
     border-radius: 20px;
-}
-
-img.moon {
-    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    padding-left: 7px;
+    margin-bottom: 3px;
 }
 
 img.sun {
     opacity: 0;
-    float: center;
-    margin-top: 4px;
-    margin-right: 5px;
 }
 
 div.toggle-animations {
     border: 3px solid rgb(115, 0, 115);
     border-radius: 20px;
-    margin-top: 3px;
-    padding: 1px 0px;
-    display: none;
+    padding: 4px;
+    padding-left: 7px;
+    display: flex;
+    align-items: center;
+    visibility: hidden;
 }
 
-img.circle-purple {
-    margin-left: 4px;
-}
-
-img.circle-cyan {
-    float: center;
+.circle-cyan {
     opacity: 0;
-    margin-top: 7px;
-    /* margin-right: 4px; <-comment it */
-}  
+}
 
 main {
     display: flex;
@@ -116,7 +125,6 @@ main {
 .card-container {
     width: 30%;
     z-index: 2;
-    /* display: none; */
 }
 
 .card-front {
@@ -150,6 +158,9 @@ main {
     border: 1px solid white;
     margin: 29px 0px;
 }
+
+
+/* CARD DISPLAY */
 
 .card-front-details {
     display: flex;
@@ -194,6 +205,9 @@ main {
     left: 82%;
     font-size: 0.7rem;
 }
+
+
+/* FORM */
 
 .form-container {
     width: 25%;
@@ -274,8 +288,8 @@ form #exp-date-month:invalid {
     display: none;
 } */
 
-/* FORM COMPLETED */
 
+/* FORM COMPLETED DISPLAY*/
 
 .form-completed {
     display: none;
@@ -303,6 +317,7 @@ form #exp-date-month:invalid {
 .form-completed>p {
     font-size: 0.8rem;
 }
+
 
 /* ANIMATIONS */
 
@@ -338,7 +353,9 @@ form #exp-date-month:invalid {
     animation-fill-mode: forwards;
 } */
 
-/* MOBILE DESIGN */
+
+
+/* MOBILE DESIGN portrait*/
 
 @media only screen and (max-width: 600px) and (min-height: 700px) {
 
@@ -396,7 +413,6 @@ form #exp-date-month:invalid {
     .form-container {
         width: 300%;
         position: relative;
-        /* display: block; */
         left: -15%;
         top: 300px;
     }
@@ -408,7 +424,6 @@ form #exp-date-month:invalid {
     .form-completed {
         width: 300%;
         position: relative;
-        /* display: block; */
         left: -15%;
         top: 300px;
     }
@@ -417,28 +432,30 @@ form #exp-date-month:invalid {
         width: 10%;
         left: 2%;
         align-self: flex-start;
+        align-self: top;
     }
 
     div.toggle-dark-white {
         width: 60px;
         height: 28px;
+        margin: 2px 0px;
     }
 
-    div.toggle-dark-white > img.moon {
-        padding: 4px 3px;
-    }
-    
     div.toggle-animations {
         width: 60px;
         height: 28px;
-        padding-bottom: 20px;
     }
+
 }
+
+
+/* MOBILE DESIGN landscape */
 
 @media (min-width: 700px) and (max-height: 500px) {
     
     html {
         overflow: hidden;
+        height: 100vh;
     }
 
     .card-front {
@@ -502,11 +519,13 @@ form #exp-date-month:invalid {
 
 }
 
+
 /* TABLET DESIGN */
 
 @media (max-width: 1100px) { 
     html {
         overflow: hidden;
+        height: 100vh;
     }
 
     .card-front {

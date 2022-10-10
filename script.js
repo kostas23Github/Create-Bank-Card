@@ -1,4 +1,36 @@
-// DOM Elements
+/**
+ * CONTENTS
+ * 
+ *  FORM HANDLERS
+ *      addHyphen(func) -> Adds a hyphen in the 16digit card number input
+ * 
+ *      CUSTOMIZE ERROR MSGs
+ *      cardHolderNameInput -> validity handler
+ *      cardNumberInput -> validity handler
+ *      expDate -> validity handler and function(validateExpDate)
+ *           
+ *      RESET FUNCTIONS
+ *      clearForm(func) -> clears the form on submit refresh
+ *      resetCard(func) -> resets the card values
+ * 
+ *      SUBMIT FORM
+ *      submitForm(func) -> handler, submit the form values to the card elements, clears the form
+ * 
+ *  STYLING JS
+ *      DARK-NORMAL MODE
+ *      darken(func) -> toggles on the display to dark
+ *      lighten(func) -> toggles off the display to normal
+ *      
+ *      ANIMATIONS
+ *      enableAnimations(func) -> toggles on the animations
+ *      disableAnimations(func) -> toggles off the animations
+ *      cardAnimation(func) -> handles the card animation logic
+ * 
+ *  --end of contents--
+ */
+
+
+// DOM Input Elements
 const cardNumberInput = document.querySelector("input[name='card-number']");
 const cardHolderNameInput = document.querySelector('#name');
 const expDateYearInput = document.querySelector("input[name='exp-date-year']");
@@ -8,11 +40,13 @@ const expDateMonthInput = document.querySelector('select');
 // Adds a hyphen every 4 numbers.
 //https://www.encodedna.com/javascript/how-to-add-dash-after-every-3rd-character-using-javascript-or-jquery.htm
 const addHyphen = element => {
+    const cardNumberInput = document.querySelector("input[name='card-number']");
     // let ele = element.value.split('-').join(''); // Removes dash if mistakenly added.
     cardNumberInput.value = element.value.match(/\d{1,4}/g).join('-');
 }
 
 cardNumberInput.addEventListener('input', () => { addHyphen(cardNumberInput) });
+
 
 // Customize error messages    
 
@@ -47,11 +81,7 @@ const validateExpDate = () => {
     const expDateMonthInput = document.querySelector('select').value;
     if (expDateMonthInput && expDateYearInput) {
         const expDate = new Date(`${expDateYearInput.value}-${expDateMonthInput.valueOf()}`).getTime();
-        console.log(expDateMonthInput);
-        console.log(expDateMonthInput.valueOf());
         const currentDate = new Date().getTime();
-        console.log(currentDate);
-        console.log(expDate - currentDate);
         if (expDate - currentDate > 126227808000 || expDate - currentDate < 0) {
             return false;
         } else {
@@ -80,6 +110,8 @@ cvcInput.addEventListener('input', () => {
         cvcInput.setCustomValidity('');
     }
 })
+// End of customize error messages   
+
 
 // Clears every form's input element's value.
 const clearForm = () => {
@@ -114,6 +146,9 @@ const submitForm = (event) => {
     let expDate = document.querySelector('.exp-date-front');
     let cvc = document.querySelector('.cvc-back');
 
+    // DOM input elements
+    //
+
     // Change layout elements
     const formContainer = document.querySelector('.form-container');
     const formCompleted = document.querySelector('.form-completed');
@@ -139,6 +174,8 @@ document.querySelector('form').addEventListener('submit', submitForm);
 // STYLING JS
 // From here till the end the code handles the styling
 
+
+// DARK-NORMAL MODE
 const darken = () => {
     document.querySelector('.overlay').className = "overlay-dark";
     document.querySelector('body').style.color = 'white';
@@ -182,7 +219,7 @@ const lighten = () => {
     document.querySelector("div.toggle-animations").style.visibility = "hidden";
     let sun = document.querySelector('img.sun');
     let moon = document.querySelector('img.moon');
-    moon.style.transform = "translateX(0px)"; //
+    moon.style.transform = "translateX(0px)";
     sun.style.transform = "translateX(0px)";
     moon.style.opacity = "1";
     sun.style.opacity = "0";
@@ -194,7 +231,10 @@ const lighten = () => {
 
 document.querySelector('.moon').addEventListener('click', darken);
 document.querySelector('.sun').addEventListener('click', lighten);
+// END of DARK-NORMAL MODE  
 
+
+// ANIMATIONS
 let animationStatus = false;
 
 const enableAnimations = () => {
@@ -256,5 +296,6 @@ const cardAnimation = () => {
     } else {
         return;
     }
-
+    
 }
+// End of animations
