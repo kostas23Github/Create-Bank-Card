@@ -26,13 +26,13 @@ body {
     font-size: 18px;
     font-family: 'Space Grotesk', sans-serif;
     overflow: hidden;
-    height: 100%;
     background-color: rgb(222, 222, 222);
+    z-index: -100;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
+    position: relative;
 }
 
 * {
@@ -46,46 +46,42 @@ body {
 
 .overlay {
     position: fixed;
-    left: -10px;
-    top: -20px;
-    height: 110%;
+    height: 100vh;
     width: 33%;
     background-image: url(./images/bg-main-desktop.png);
     z-index: 1;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-} 
-
-.overlay-dark {
-    background-image: url(./images/bg-planets-black.jpg);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 0;
 }
 
+.overlay-dark,
 .rotate {
     background-image: url(./images/bg-planets-black.jpg);
+    background-repeat: no-repeat;
     width: 100%;
     height: 100%;
     position: absolute;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 0;
-} 
+    background-size:contain;
+    background-position:center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
 
 
 /* TOGGLY STUFF */
 
 .toggle-container {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 70px;
     z-index: 100;
     padding: 3px;
-    align-self:flex-end;
+    /* align-self:flex-end; */
 }
 
 div.toggle-dark-white {
@@ -118,22 +114,25 @@ div.toggle-animations {
 
 main {
     display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 80vw;
+    margin: 0 auto;
 }
 
 .card-container {
-    width: 30%;
+    width: 40%;
     z-index: 2;
 }
 
 .card-front {
     background-image: url(./images/bg-card-front.png);
     background-size: 100% 100%;
-    max-width: 400px;
-    min-width: 200px;
-    max-height: 200px;
-    min-height: 150px;
+    max-width: 360px;
+    min-width: 250px;
+    max-height: 220px;
+    min-height: 180px;
     color: white;
     border-radius: 10px;
     box-shadow: 5px 1px 20px 1px rgba(0, 0, 0, 0.5), 5px -5px 20px 0px hsl(278, 61%, 39%, 0.6);
@@ -187,10 +186,10 @@ main {
 .card-back {
     background-image: url(./images/bg-card-back.png);
     background-size: 100% 100%;
-    max-width: 400px;
-    height: 200px;
+    max-width: 360px;
     min-width: 250px;
-    /* min-height: 145px; */
+    height: 200px;
+    min-height: 180px;
     position: relative;
     left: 100px;
     top: 20px;
@@ -209,17 +208,14 @@ main {
 
 /* FORM */
 
-.form-container {
-    width: 25%;
-    margin-top: 50px;
+.form-container,
+.form-completed {
+    width: 40%;
     z-index: 1;
-    /* position: relative; */
-    /* left: -70px; */
-    /* top: 40px; */
 }
 
 form label {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     letter-spacing: 1px;
 }
 
@@ -234,10 +230,11 @@ form select {
 
 form div.third-row {
     display: flex;
+    justify-content: space-between;
 }
 
 form #exp-date-month {
-    width: 30%;
+    width: 25%;
     background-color: white;
     border-radius: 5px;
     border: 2px inset hsl(270, 3%, 87%);
@@ -246,22 +243,29 @@ form #exp-date-month {
 }
 
 form #exp-date-year {
-    width: 35%;
+    width: 33%;
 }
 
 form div.cvc-container {
-    max-width: 20%;
-    margin-left: 10%;
+    width: 20%;
+}
+
+form>div.submit-container {
+    display: flex;
+    justify-content: center;
 }
 
 .btn {
+    width: 50%;
+    max-width: 170px;
+    min-width: 150px;
     background-color: hsl(278, 68%, 11%);
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     color: white;
-    letter-spacing: 1px;
-    opacity: 1;
-    padding: 10px;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+    padding: 10px 15px;
 }
 
 .btn:hover {
@@ -275,30 +279,28 @@ form #exp-date-month:focus {
 }
 
 /* Better since only the focus element is shown red, but not so good on the exp-date error.*/
-form input:focus:invalid,   
+form input:focus:invalid,
 form #exp-date-month:focus:invalid {
     border: 3px inset rgb(255, 0, 89);
 }
+
 /* form input:invalid,
 form #exp-date-month:invalid {
     border: 3px inset rgb(255, 0, 89);
 } */
 
-/* .form-container {
+.form-container {
     display: none;
-} */
+}
 
 
 /* FORM COMPLETED DISPLAY*/
 
-.form-completed {
+/* .form-completed {
     display: none;
-}
+} */
 
 .form-completed {
-    width: 25%;
-    position: relative;
-    top: 70px;
     text-align: center;
 }
 
@@ -312,10 +314,6 @@ form #exp-date-month:invalid {
 
 .form-completed>h3 {
     letter-spacing: 1px;
-}
-
-.form-completed>p {
-    font-size: 0.8rem;
 }
 
 
@@ -332,21 +330,18 @@ form #exp-date-month:invalid {
 }
 
 .rotate {
-    animation: 5s rotation infinite;
+    animation: 7s rotation infinite;
     animation-timing-function: linear;
 }
 
 @keyframes purpleRight {
-
     100% {
         transform: translateX(18px);
         opacity: 0;
     }
 }
 
-@keyframes cyanLeft {
-
-}
+@keyframes cyanLeft {}
 
 /* .circle-purple:active {
     animation: 1s purpleRight linear;
@@ -357,37 +352,51 @@ form #exp-date-month:invalid {
 
 /* MOBILE DESIGN portrait */
 
-@media only screen and (max-width: 600px) and (orientation:portrait) { 
+@media only screen and (max-width: 600px) and (orientation:portrait) {
 
     html,
     body {
         width: 100vw;
-        overflow-y: visible !important;
-        flex-direction: column;
-        height: 800px;
+        overflow-y: visible;
+        position: static;
     }
 
     .overlay {
         position: absolute;
-        width: 110%;
-        height: 45%;
+        width: 100vw;
+        height: 45vh;
+    }
+
+    .overlay-dark {
+        background-position: bottom;
+        z-index: 0;
     }
 
     .rotate {
         animation: none;
+        background-position: bottom;
+        z-index: 0;
+    }
+
+    main {
+        align-items: flex-start;
+        margin: 20vh auto;
+        width: 90%;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
 
     .card-container {
-        width: 80%;
+        position: static;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        justify-content: center;
     }
 
     .card-front {
-        position: absolute;
-        width: 200px;
-        height: 150px;
-        top: 190px;
-        left: 10%;
-        z-index: 1;
+        width: 100%;
     }
 
     .card-front-number {
@@ -395,37 +404,28 @@ form #exp-date-month:invalid {
         margin: 20px 10px 0px 20px;
     }
 
-    .cardholder-front-name,.exp-date-front {
+    .cardholder-front-name,
+    .exp-date-front {
         margin-top: 30px;
     }
 
     .card-back {
-        position: absolute;
-        width: 40%;
-        height: 145px;
-        top: 70px;
+        width: 100%;
+        position: inherit;
     }
 
     .cvc-back {
         top: 90px;
     }
 
-    .form-container {
-        width: 300%;
-        position: relative;
-        left: -15%;
-        top: 300px;
+    .form-container,
+    .form-completed {
+        width: 90%;
+        margin: 5vh auto;
     }
 
     form div.exp-date-input-container {
         width: 100%;
-    }
-
-    .form-completed {
-        width: 300%;
-        position: relative;
-        left: -15%;
-        top: 300px;
     }
 
     .toggle-container {
@@ -452,33 +452,37 @@ form #exp-date-month:invalid {
 /* MOBILE DESIGN landscape */
 
 @media (max-height: 600px) and (orientation: landscape) {
-    
+
+    main {
+        justify-content: space-between;
+    }
+
+    .card-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+    }
 
     .card-front {
-        position: absolute;
-        max-width: 300px;
-        height: 180px;
-        top: 40%;
-        left: 7%;
-        z-index: 1;
+        order: 2;
+        width: 80%;
+        position: relative;
+        bottom: 50px;
+        right: 20px;
     }
 
     .card-back {
-        position: absolute;
-        width: 300px;
-        height: 180px;
+        order: 1;
+        width: 80%;
+        position: inherit;
+        left: 0;
         top: 10px;
-        left: 15%;
     }
 
     .card-front-number {
         letter-spacing: 0px;
-        margin: 20px 10px 0px 20px;
         font-size: 1rem;
-    }
-
-    .cardholder-front-name,.exp-date-front {
-        margin-top: 20px;
     }
 
     .cvc-back {
@@ -487,38 +491,40 @@ form #exp-date-month:invalid {
         left: 78%;
     }
 
-    .form-container {
-        width: 35%;
-        position: relative;
-        left: 0px;
-        top: -110px;
+    section.form-container,
+    section.form-completed {
+        width: 50%;
     }
-    
+
     form div.exp-date-container {
-        width: 100%;
+        margin-top: 5px;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
     }
 
-    .form-completed {
+    form div.exp-date-input-container {
+        display: flex;
+    }
+
+    select#exp-date-month,
+    input#exp-date-year {
+        width:50%;
+    }
+
+    form div.cvc-container {
+        margin-top: 5px;
         width: 35%;
-        position: relative;
-        left: 0px;
-        top: -50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-
-    div.toggle-container {
-        left: 2%;
-    }
-
-    div.toggle-animations {
-        left: 1300%;
-    }
-
 }
 
 
 /* TABLET DESIGN */
 
-@media (max-width: 1100px) { 
+@media (min-width: 601px) and (max-width: 1100px) and (min-height: 600px) {
     html {
         overflow: hidden;
         height: 100vh;
