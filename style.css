@@ -289,16 +289,16 @@ form #exp-date-month:invalid {
     border: 3px inset rgb(255, 0, 89);
 } */
 
-.form-container {
+/* .form-container {
     display: none;
-}
+} */
 
 
 /* FORM COMPLETED DISPLAY*/
 
-/* .form-completed {
+.form-completed {
     display: none;
-} */
+}
 
 .form-completed {
     text-align: center;

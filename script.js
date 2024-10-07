@@ -171,6 +171,7 @@ const submitForm = (event) => {
 
 document.querySelector('form').addEventListener('submit', submitForm);
 
+
 // STYLING JS
 // From here till the end the code handles the styling
 
